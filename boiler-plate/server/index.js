@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
-const port = 3000;
+const port = 5000;
 const bodyParser = require("body-parser");
 const { User } = require("./models/User");
 const cookieParser = require("cookie-parser");
@@ -25,6 +25,10 @@ mongoose
 
 app.get("/", (req, res) => {
     res.send("Hello World!");
+});
+
+app.get("/api/hello", (req, res) => {
+    res.send("안녕하세요");
 });
 
 app.post("/api/users/register", (req, res) => {
@@ -90,10 +94,6 @@ app.get("/api/users/logout", auth, (req, res) => {
                 success: true,
             });
     });
-});
-
-app.get("/api/hello", (req, res) => {
-    res.send("안녕하세요");
 });
 
 app.listen(port, () => {
