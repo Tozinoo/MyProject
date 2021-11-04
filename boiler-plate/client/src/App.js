@@ -1,11 +1,12 @@
-import "./App.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import './App.css';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 //import NavBar from "./components/views/NavBar/NavBar";
-import LandingPage from "./components/views/LandingPage/LandingPage";
-import LoginPage from "./components/views/LoginPage/LoginPage";
-import RegisterPage from "./components/views/RegisterPage/RegisterPage";
-import Auth from "./hoc/auth";
-import NavBar from "./components/views/NavBar/NavBar";
+import LandingPage from './components/views/LandingPage/LandingPage';
+import LoginPage from './components/views/LoginPage/LoginPage';
+import RegisterPage from './components/views/RegisterPage/RegisterPage';
+import Auth from './hoc/auth';
+import NavBar from './components/views/NavBar/NavBar';
+import SignUp from './components/views/RegisterPage/Register';
 
 function App() {
     return (
@@ -24,6 +25,7 @@ function App() {
                         path="/register"
                         component={Auth(RegisterPage, false)}
                     />
+                    <Route exact path="/signup" component={SignUp} />
                 </Switch>
             </div>
         </Router>

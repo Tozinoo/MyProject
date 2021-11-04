@@ -4,35 +4,42 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 
+import './NavBar.css';
+import { Link } from '@mui/material';
+import axios from 'axios';
+import { withRouter } from 'react-router';
+import RightMenu from './Sections/RightMenu';
 
-export default function NavBar() {
+const NavBar = (props) => {
+    const onClickHandler = () => {
+        axios.get('/api/users/logout').then((response) => {
+            if (response.data.success) {
+                props.history.push('/login');
+            } else {
+                alert('로그아웃 하는데 실패 했습니다.');
+            }
+        });
+    };
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="menu"
-                        sx={{ mr: 2 }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
+                    <Link href="/" sx={{ ml: 30, mr: 2 }}>
+                        <img className="navbar-logo" src="img/usEarth.png" />
+                    </Link>
                     <Typography
                         variant="h6"
                         component="div"
                         sx={{ flexGrow: 1 }}
                     >
-                        News
+                        UsEarth
                     </Typography>
-
-                    <Button href="/login" color="inherit">Login</Button>
+                    <RightMenu />
                 </Toolbar>
             </AppBar>
         </Box>
     );
-}
+};
+
+export default withRouter(NavBar);

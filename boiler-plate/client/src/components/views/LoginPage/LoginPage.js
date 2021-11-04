@@ -1,22 +1,20 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { loginUser } from "../../../actions/user_actions";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-
-
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { loginUser } from '../../../actions/user_actions';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function Copyright(props) {
     return (
@@ -26,29 +24,29 @@ function Copyright(props) {
             align="center"
             {...props}
         >
-            {"Copyright © "}
+            {'Copyright © '}
             <Link color="inherit" href="https://mui.com/">
-                Your Website
-            </Link>{" "}
+                UsEarth
+            </Link>{' '}
             {new Date().getFullYear()}
-            {"."}
+            {'.'}
         </Typography>
     );
 }
 
 const theme = createTheme({
-    palette:{
-        secondary:{
-            main:'#000000',
-        }
-    }
+    palette: {
+        secondary: {
+            main: '#000000',
+        },
+    },
 });
 
 const LoginPage = (props) => {
     const dispatch = useDispatch();
 
-    const [Email, setEmail] = useState("");
-    const [Password, setPassword] = useState("");
+    const [Email, setEmail] = useState('');
+    const [Password, setPassword] = useState('');
 
     const onEmailHandler = (event) => {
         setEmail(event.currentTarget.value);
@@ -66,10 +64,10 @@ const LoginPage = (props) => {
 
         dispatch(loginUser(body)).then((response) => {
             if (response.payload.loginSuccess) {
-                props.history.push("/");
+                props.history.push('/');
             } else {
                 console.log(body.email);
-                alert("Error");
+                alert('Error');
             }
         });
     };
@@ -77,11 +75,11 @@ const LoginPage = (props) => {
     return (
         <div
             style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                width: "100%",
-                height: "100vh",
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '100%',
+                height: '100vh',
             }}
         >
             <ThemeProvider theme={theme}>
@@ -90,12 +88,12 @@ const LoginPage = (props) => {
                     <Box
                         sx={{
                             marginTop: 8,
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "center",
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
                         }}
                     >
-                        <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
+                        <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
                             <LockOutlinedIcon />
                         </Avatar>
                         <Typography component="h1" variant="h5">
