@@ -26,7 +26,7 @@ function Copyright(props) {
         >
             {"Copyright © "}
             <Link color="inherit" href="https://mui.com/">
-                Your Website
+                UsEarth
             </Link>{" "}
             {new Date().getFullYear()}
             {"."}
@@ -39,10 +39,13 @@ const theme = createTheme();
 const RegisterPage = (props) => {
     const dispatch = useDispatch();
 
+    
     const [Email, setEmail] = useState("");
-    const [Name, setName] = useState("");
     const [Password, setPassword] = useState("");
     const [ConfirmPassword, setConfirmPassword] = useState("");
+    const [Name, setName] = useState("");
+    const [Nickname, setNickname] = useState("");
+    const [Address, setAddress] = useState("");
 
     const onEmailHandler = (event) => {
         setEmail(event.currentTarget.value);
@@ -53,8 +56,14 @@ const RegisterPage = (props) => {
     const onPasswordHandler = (event) => {
         setPassword(event.currentTarget.value);
     };
-    const onCornfirmPasswordHandler = (event) => {
+    const onConfirmPasswordHandler = (event) => {
         setConfirmPassword(event.currentTarget.value);
+    };
+    const onNicknameHandler = (event) => {
+        setNickname(event.currentTarget.value);
+    };
+    const onAddressHandler = (event) => {
+        setAddress(event.currentTarget.value);
     };
     const onSubmitHandler = (event) => {
         event.preventDefault();
@@ -65,8 +74,10 @@ const RegisterPage = (props) => {
 
         let body = {
             email: Email,
-            name: Name,
             password: Password,
+            name: Name,
+            nickname: Nickname,
+            address: Address
         };
 
         dispatch(registerUser(body)).then((response) => {
@@ -110,40 +121,24 @@ const RegisterPage = (props) => {
                             onSubmit={onSubmitHandler}
                             sx={{ mt: 3 }}
                         >
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} sm={6}>
+                            <Grid container spacing={1}>
+                                <Grid item xs={12} >
                                     <TextField
-                                        autoComplete="given-name"
-                                        name="firstName"
-                                        required
-                                        fullWidth
-                                        id="firstName"
-                                        label="First Name"
-                                        autoFocus
-                                    />
-                                </Grid>
-                                <Grid item xs={12} sm={6}>
-                                    <TextField
-                                        required
-                                        fullWidth
-                                        id="lastName"
-                                        label="Last Name"
-                                        name="lastName"
-                                        autoComplete="family-name"
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
+                                        value={Email}
+                                        onChange={onEmailHandler}
                                         required
                                         fullWidth
                                         id="email"
                                         label="Email Address"
                                         name="email"
                                         autoComplete="email"
+                                        autoFocus
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField
+                                        value={Password}
+                                        onChange={onPasswordHandler}
                                         required
                                         fullWidth
                                         name="password"
@@ -153,6 +148,56 @@ const RegisterPage = (props) => {
                                         autoComplete="new-password"
                                     />
                                 </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        value={ConfirmPassword}
+                                        onChange={onConfirmPasswordHandler}
+                                        required
+                                        fullWidth
+                                        name="password"
+                                        label="Confirm Password"
+                                        type="password"
+                                        id="password"
+                                        autoComplete="new-password"
+                                    />
+                                </Grid>
+                                <Grid item xs={12} >
+                                    <TextField
+                                        value={Name} 
+                                        onChange={onNameHandler}
+                                        required
+                                        fullWidth
+                                        id="Name"
+                                        label="Name"
+                                        name="Name"
+                                        autoComplete="name"
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        value={Nickname}
+                                        onChange={onNicknameHandler}
+                                        required
+                                        fullWidth
+                                        id="nickname"
+                                        label="Nickname"
+                                        name="nickname"
+                                        autoComplete="nickname"
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        value={Address}
+                                        onChange={onAddressHandler}
+                                        required
+                                        fullWidth
+                                        id="address"
+                                        label="Address"
+                                        name="address"
+                                        autoComplete="address"
+                                    />
+                                </Grid>
+                                
                                 <Grid item xs={12}>
                                     <FormControlLabel
                                         control={
@@ -175,7 +220,7 @@ const RegisterPage = (props) => {
                             </Button>
                             <Grid container justifyContent="flex-end">
                                 <Grid item>
-                                    <Link href="#" variant="body2">
+                                    <Link href="/login" variant="body2">
                                         Already have an account? Sign in
                                     </Link>
                                 </Grid>
@@ -185,7 +230,7 @@ const RegisterPage = (props) => {
                     <Copyright sx={{ mt: 5 }} />
                 </Container>
             </ThemeProvider>
-            <form
+            {/* <form
                 style={{ display: "flex", flexDirection: "column" }}
                 onSubmit={onSubmitHandler}
             >
@@ -206,12 +251,12 @@ const RegisterPage = (props) => {
                 <input
                     type="password"
                     value={ConfirmPassword}
-                    onChange={onCornfirmPasswordHandler}
+                    onChange={onConfirmPasswordHandler}
                 />
                 <br />
 
                 <button type="submit">회원가입</button>
-            </form>
+            </form> */}
         </div>
     );
 };

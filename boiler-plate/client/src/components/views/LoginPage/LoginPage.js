@@ -16,6 +16,8 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
+
+
 function Copyright(props) {
     return (
         <Typography
@@ -34,7 +36,13 @@ function Copyright(props) {
     );
 }
 
-const theme = createTheme();
+const theme = createTheme({
+    palette:{
+        secondary:{
+            main:'#000000',
+        }
+    }
+});
 
 const LoginPage = (props) => {
     const dispatch = useDispatch();
@@ -87,7 +95,7 @@ const LoginPage = (props) => {
                             alignItems: "center",
                         }}
                     >
-                        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+                        <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
                             <LockOutlinedIcon />
                         </Avatar>
                         <Typography component="h1" variant="h5">
@@ -137,6 +145,7 @@ const LoginPage = (props) => {
                                 fullWidth
                                 variant="contained"
                                 sx={{ mt: 3, mb: 2 }}
+                                color="secondary"
                             >
                                 Sign In
                             </Button>
@@ -147,7 +156,7 @@ const LoginPage = (props) => {
                                     </Link>
                                 </Grid>
                                 <Grid item>
-                                    <Link href="#" variant="body2">
+                                    <Link href="/register" variant="body2">
                                         {"Don't have an account? Sign Up"}
                                     </Link>
                                 </Grid>

@@ -1,57 +1,38 @@
-import React, { useState } from "react";
-import LeftMenu from "./Sections/LeftMenu";
-import RightMenu from "./Sections/RightMenu";
-import { Drawer, Button } from "antd";
-import Icon from "@ant-design/icons";
-import "./Sections/Navbar.css";
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
 
-function NavBar() {
-    const [visible, setVisible] = useState(false);
 
-    const showDrawer = () => {
-        setVisible(true);
-    };
-
-    const onClose = () => {
-        setVisible(false);
-    };
-
+export default function NavBar() {
     return (
-        <nav
-            className="menu"
-            style={{ position: "fixed", zIndex: 5, width: "100%" }}
-        >
-            <div className="menu__logo">
-                <a href="/">Logo</a>
-            </div>
-            <div className="menu__container">
-                <div className="menu_left">
-                    <LeftMenu mode="horizontal" />
-                </div>
-                <div className="menu_rigth">
-                    <RightMenu mode="horizontal" />
-                </div>
-                <Button
-                    className="menu__mobile-button"
-                    type="primary"
-                    onClick={showDrawer}
-                >
-                    <Icon type="align-right" />
-                </Button>
-                <Drawer
-                    title="Basic Drawer"
-                    placement="right"
-                    className="menu_drawer"
-                    closable={false}
-                    onClose={onClose}
-                    visible={visible}
-                >
-                    <LeftMenu mode="inline" />
-                    <RightMenu mode="inline" />
-                </Drawer>
-            </div>
-        </nav>
+        <Box sx={{ flexGrow: 1 }}>
+            <AppBar position="static">
+                <Toolbar>
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="menu"
+                        sx={{ mr: 2 }}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                    <Typography
+                        variant="h6"
+                        component="div"
+                        sx={{ flexGrow: 1 }}
+                    >
+                        News
+                    </Typography>
+
+                    <Button href="/login" color="inherit">Login</Button>
+                </Toolbar>
+            </AppBar>
+        </Box>
     );
 }
-
-export default NavBar;
