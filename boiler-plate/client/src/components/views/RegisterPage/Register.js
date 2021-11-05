@@ -1,7 +1,8 @@
-import React, { useRef } from 'react';
-import ReactDOM from 'react-dom';
-import { useForm } from 'react-hook-form';
-import './style.css';
+import React, { useRef } from "react";
+import ReactDOM from "react-dom";
+import { useForm } from "react-hook-form";
+import { FormWithHookForm } from "./FormInput";
+import "./style.css";
 
 const SignUp = () => {
     const {
@@ -12,12 +13,12 @@ const SignUp = () => {
     } = useForm();
 
     const password = useRef();
-    password.current = watch('password');
+    password.current = watch("password");
     const onSubmit = (data) => {
-        console.log('data', data);
+        console.log("data", data);
     }; // your form submit function which will invoke after successful validation
 
-    console.log(watch('email'));
+    console.log(watch("email"));
 
     return (
         <div className="test_register">
@@ -27,7 +28,7 @@ const SignUp = () => {
                     className="test_input"
                     name="email"
                     type="email"
-                    {...register('email', {
+                    {...register("email", {
                         required: true,
                         pattern: /^\S+@\S+$/i,
                     })}
@@ -41,12 +42,12 @@ const SignUp = () => {
                     className="test_input"
                     name="name"
                     type="text"
-                    {...register('name', { required: true, maxLength: 10 })}
+                    {...register("name", { required: true, maxLength: 10 })}
                 />
-                {errors.name && errors.name.type === 'required' && (
+                {errors.name && errors.name.type === "required" && (
                     <p className="test_error">This field is required</p>
                 )}
-                {errors.name && errors.name.type === 'maxLength' && (
+                {errors.name && errors.name.type === "maxLength" && (
                     <p className="test_error">
                         Your input exceed maximum length
                     </p>
@@ -57,12 +58,12 @@ const SignUp = () => {
                     className="test_input"
                     name="password"
                     type="password"
-                    {...register('password', { required: true, minLength: 6 })}
+                    {...register("password", { required: true, minLength: 6 })}
                 />
-                {errors.password && errors.password.type === 'required' && (
+                {errors.password && errors.password.type === "required" && (
                     <p className="test_error">This field is required</p>
                 )}
-                {errors.password && errors.password.type === 'minLength' && (
+                {errors.password && errors.password.type === "minLength" && (
                     <p className="test_error">
                         Password must have at least 6 characters
                     </p>
@@ -73,23 +74,24 @@ const SignUp = () => {
                     className="test_input"
                     name="password_confirm"
                     type="password"
-                    {...register('password_confirm', {
+                    {...register("password_confirm", {
                         required: true,
                         validate: (value) => value === password.current,
                     })}
                 />
 
                 {errors.password_confirm &&
-                    errors.password_confirm.type === 'required' && (
+                    errors.password_confirm.type === "required" && (
                         <p className="test_error">This field is required</p>
                     )}
                 {errors.password_confirm &&
-                    errors.password_confirm.type === 'validate' && (
+                    errors.password_confirm.type === "validate" && (
                         <p className="test_error">The passwords do not match</p>
                     )}
 
                 <input type="submit" />
             </form>
+            <FormWithHookForm />
         </div>
     );
 };

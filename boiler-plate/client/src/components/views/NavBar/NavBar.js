@@ -1,23 +1,24 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 
-import './NavBar.css';
-import { Link } from '@mui/material';
-import axios from 'axios';
-import { withRouter } from 'react-router';
-import RightMenu from './Sections/RightMenu';
+import "./NavBar.css";
+import { Link } from "@mui/material";
+import axios from "axios";
+import { withRouter } from "react-router";
+import RightMenu from "./Sections/RightMenu";
+import MiddleMenu from "./Sections/MiddleMenu";
 
 const NavBar = (props) => {
     const onClickHandler = () => {
-        axios.get('/api/users/logout').then((response) => {
+        axios.get("/api/users/logout").then((response) => {
             if (response.data.success) {
-                props.history.push('/login');
+                props.history.push("/login");
             } else {
-                alert('로그아웃 하는데 실패 했습니다.');
+                alert("로그아웃 하는데 실패 했습니다.");
             }
         });
     };
@@ -35,6 +36,7 @@ const NavBar = (props) => {
                     >
                         UsEarth
                     </Typography>
+                    <MiddleMenu />
                     <RightMenu />
                 </Toolbar>
             </AppBar>

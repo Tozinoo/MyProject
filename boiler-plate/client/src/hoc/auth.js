@@ -1,7 +1,6 @@
-import { Axios } from 'axios';
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { auth } from '../actions/user_actions';
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { auth } from "../actions/user_actions";
 
 export default function (SpecificComponent, option, adminRoute = null) {
     // option
@@ -16,16 +15,16 @@ export default function (SpecificComponent, option, adminRoute = null) {
                 // 로그인 하지 않은 상태
                 if (!response.payload.isAuth) {
                     if (option) {
-                        props.history.push('/login');
+                        props.history.push("/login");
                     }
                 }
                 // 로그인 한 상태
                 else {
                     if (adminRoute && !response.payload.isAdmin) {
-                        props.history.push('/');
+                        props.history.push("/");
                     } else {
                         if (option === false) {
-                            props.history.push('/');
+                            props.history.push("/");
                         }
                     }
                 }
